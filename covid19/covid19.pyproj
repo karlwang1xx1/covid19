@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e6abb219-bd01-44e0-af87-567084c25e26</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>covid19.py</StartupFile>
+    <StartupFile>create_models.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="covid19.py" />
+    <Compile Include="create_models.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="result_data\" />
