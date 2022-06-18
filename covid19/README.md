@@ -6,3 +6,10 @@ To make the visualization portion work, a matched pair of matplotlib and python 
 Python-3.9.0-amd64.exe, matplotlib-3.4.3-cp310-cp310-win_amd64.whl are included in this package for convenience 
 if you are using wondows 10+
 
+On Windows, when the enviroment is setup, the following steps as an example:
+1) create a virtual enviroment venv (python 3.9)
+2) venv\Scripts\activate 
+3) pip install -requirements.txt
+4) python create.py to creat models
+5) python predict.py to try the models to predit survive or die 
+
