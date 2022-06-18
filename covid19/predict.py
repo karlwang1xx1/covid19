@@ -7,33 +7,25 @@ window.title("Predict your patient to be (survive) or not to be (die)")
 window.geometry('600x400')
 window.wm_iconbitmap('concertai.ico') # Generals.ico is a filename for the window icon
 
+filenames =['result_data/log_reg_model.sav','result_data/decision_tree_model.sav','result_data/knn_model.sav', 'result_data/svm_model.sav']
 lbl_error = Label(window, text='',fg="#f00")
 lbl_error.grid(row=0, column=1, columnspan=3, sticky="w", padx=20)
-
 lbl_g = Label(window, text='Gender')
-
 lbl_r = Label(window, text='Race')
-
 lbl_a = Label(window, text='Age')
-
-
 lbl_g.grid(row=1, column=0, sticky="w", padx=20)
 lbl_r.grid(row=1, column=1, sticky="w", padx=20)
 lbl_a.grid(row=1, column=2, sticky="w", padx=20)
-
-
-
-
 #gender = Entry(window) 
 OPTIONS_G = [
-"F",
-"M",
+    "F",
+    "M",
 ] #etc
 OPTIONS_R = [
-"white",
-"asian",
-"black",
-"native",
+    "white",
+    "asian",
+    "black",
+    "native",
 ] #etc
 
 def ok():
@@ -43,7 +35,7 @@ def ok():
         print("please enter an integer for age")
         lbl_error["text"]="please enter an integer for age"
         return
-    gender_ = v_g.get()
+    gender_ = v_g.get() 
     race_ = v_r.get()
     age_ = float(age.get())
     print ("gender is:" + gender_)
@@ -52,42 +44,40 @@ def ok():
     lbl_error["text"] =""
     # Transform
     X = pd.DataFrame(columns=["GENDER","RACE","AGE"],data=[[gender_,race_,age_]])
+    X.loc[:,'GENDER'] = (X.GENDER == 'M').astype(int)
+    print(X)
     #print(dataset)
     filename = 'result_data/ct_model.sav'
     ct = pickle.load(open(filename, 'rb'))
     cX = ct.transform(X)
-    dX =pd.DataFrame(cX,columns=['encoder__GENDER_F', 'encoder__GENDER_M', 'encoder__RACE_asian',
-       'encoder__RACE_black', 'encoder__RACE_native',
-       'encoder__RACE_white', 'remainder__AGE'])
+    dX =pd.DataFrame(cX,columns=['encoder__RACE_asian', 'encoder__RACE_black', 'encoder__RACE_native',
+        'encoder__RACE_white', 'remainder__GENDER', 'remainder__AGE'])
     #print(dX)
-    filename = 'result_data/svm_model.sav'
+  
+    filename = filenames[0]
     loaded_model = pickle.load(open(filename, 'rb'))
     p= loaded_model.predict(dX)
-    print(p[0])
     color, message = pred(p[0])
     lbl_1["text"] = "Model 1: " + message
     lbl_1["fg"] = color
 
-    filename = 'result_data/decision_tree_model.sav'
+    filename = filenames[1]
     loaded_model = pickle.load(open(filename, 'rb'))
     p= loaded_model.predict(dX)
-    print(p[0])
     color, message = pred(p[0])
     lbl_2["text"] = "Model 2: " + message
     lbl_2["fg"] = color    
 
-    filename = 'result_data/log_reg_model.sav'
+    filename = filenames[2]
     loaded_model = pickle.load(open(filename, 'rb'))
     p= loaded_model.predict(dX)
-    print(p[0])
     color, message = pred(p[0])
     lbl_3["text"] = "Model 3: " + message
     lbl_3["fg"] = color
 
-    filename = 'result_data/knn_model.sav'
+    filename = filenames[3]
     loaded_model = pickle.load(open(filename, 'rb'))
     p= loaded_model.predict(dX)
-    print(p[0])
     color, message = pred(p[0])
     lbl_4["text"] = "Model 4: " + message
     lbl_4["fg"] = color
@@ -104,7 +94,7 @@ def pred(p):
     color ="#0f0"
     message =""
     if p==0:
-        message ="To be"
+        message ="SURVIVE"
     else:
         message = "Not to be"
         color ="#f00"
@@ -131,15 +121,19 @@ button.grid(row=3,column=2, sticky="w", padx=20, pady=20)
 btn_reset = Button(window, text="Reset", command=reset)
 btn_reset.grid(row=3,column=2, sticky="w", padx=100, pady=20)
 
-lbl_1 = Label(window, text='Model1:')
+lbl_1 = Label(window, text='Model 1:')
 lbl_1.grid(row=4, column=1, columnspan=3, sticky="w", padx=20)
-lbl_2 = Label(window, text='Model2:')
+lbl_2 = Label(window, text='Model 2:')
 lbl_2.grid(row=5, column=1, columnspan=3, sticky="w", padx=20)
-lbl_3 = Label(window, text='Model3:')
+lbl_3 = Label(window, text='Model 3:')
 lbl_3.grid(row=6, column=1, columnspan=3, sticky="w", padx=20)
-lbl_4 = Label(window, text='Model4:')
+lbl_4 = Label(window, text='Model 4:')
 lbl_4.grid(row=7, column=1, columnspan=3, sticky="w", padx=20)
+note = ""
+for i in range(len(filenames)):
+    note +="Model "+str(i+1)+":"+filenames[i]+"\n"
+lbl_5 = Label(window, text=note,fg='gray')
+lbl_5.grid(row=8, column=0, columnspan=6, sticky="w")    
 
-    
 window.mainloop()
 
