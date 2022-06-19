@@ -1,20 +1,18 @@
 # To-be-or-Not-to-be-prediction
-This GitHub repository is accessible only to invited individual.
+This GitHub repository is accessible only to invited individuals.
 
-This project is to show the model creation to predict the patient to either survive or die 
-after hospitalized because of Covid19
+This project is to demonstrate model creation to predict a patient will survive or die after being hospitalized because of Covid-19.
 
-A complete description for the project task solution is in file Note_Takehome_Project.docx
+A complete description for the project solution is in file `Note_Takehome_Project.docx`.
 
-To make the visualization portion work, a matched pair of matplotlib and python is important regarding their versions
+To make the visualization portion work on Windows 10, it is important to have the correct version of matplotlib and python.
+Python-3.9.0-amd64.exe, matplotlib-3.4.3-cp310-cp310-win_amd64.whl are included in this package for convenience if you are using Windows 10+.
 
-Python-3.9.0-amd64.exe, matplotlib-3.4.3-cp310-cp310-win_amd64.whl are included in this package for convenience 
-if you are using wondows 10+
+On Windows, to setup the environment, the following steps as an example:
+1.	create a virtual environment venv (python 3.9)
+2.	venv\Scripts\activate 
+3.	pip install -r requirements.txt
 
-On Windows, when the enviroment is setup, the following steps as an example:
-1) create a virtual enviroment venv (python 3.9)
-2) venv\Scripts\activate 
-3) pip install -r requirements.txt
-4) python create.py to creat models and save models in result_data folder (deep learning model in the create_model.ipynb, is not included in this version)
-5) python predict.py to load the saved models to predit survive or die 
-
+To run the program:
+1.	python create.py to create models and save models in result_data folder
+2.	python predict.py to load the saved models to predict survival or death
