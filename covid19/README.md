@@ -11,7 +11,7 @@ if you are using wondows 10+
 On Windows, when the enviroment is setup, the following steps as an example:
 1) create a virtual enviroment venv (python 3.9)
 2) venv\Scripts\activate 
-3) pip install -requirements.txt
+3) pip install -r requirements.txt
 4) python create.py to creat models and save models in result_data (deep learning model in the create_model.ipynb, is not included in this version)
 5) python predict.py to load the saved models to predit survive or die 
 
