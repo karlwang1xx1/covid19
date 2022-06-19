@@ -1,4 +1,6 @@
 # To-be-or-Not-to-be-prediction
+This GitHub repository is accessible only to invited individual.
+
 This project is to show the model creation to predict the patient to either survive or die 
 after hospitalized because of Covid19
 
