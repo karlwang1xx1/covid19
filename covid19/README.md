@@ -3,6 +3,8 @@ This GitHub repository is accessible only to invited individuals.
 
 This project is to demonstrate model creation to predict a patient will survive or die after being hospitalized because of Covid-19.
 
+The Jupyter Notebook file was included, named create_model.ipynb, which can be opened and run with the two original files in the same folder. 
+
 A complete description for the project solution is in file `Note_Takehome_Project.docx`.
 
 To make the visualization portion work on Windows 10, it is important to have the correct version of matplotlib and python.
